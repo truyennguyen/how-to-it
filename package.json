@@ -1,0 +1,31 @@
+{
+  "name": "how-to-it",
+  "version": "0.1.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "./node_modules/grunt-cli/bin/grunt test",
+    "start": "node server.js"
+  },
+  "contributors": [
+    {
+      "name": "Nick Eagan"
+    },
+    {
+      "name": "Josh Allen"
+    },
+    {
+      "name": "Truyen Nguyen"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrAllen/how-to-it.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrAllen/how-to-it/issues"
+  },
+  "homepage": "https://github.com/MrAllen/how-to-it"
+}
