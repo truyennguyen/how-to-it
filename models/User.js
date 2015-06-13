@@ -1,3 +1,9 @@
+'use strict';
+
+/*
+ *
+ */
+
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var eat = require('eat');
@@ -7,8 +13,20 @@ var userSchema = mongoose.Schema({
   basic: {
     email: {type: String, required: true, unique: true},
     password: {type: String}
-  }
+  },
+  uuid: String,
+  articles: {
+    toRead: String,
+    isReading: String,
+    hasRead: String
+  },
+  categories: [String]
 });
+
+
+userSchema.methods.generateUuid = function() {
+  // Need to generate uuid
+};
 
 userSchema.methods.generateHash = function(password, callback) {
   bcrypt.genSalt(8, function(err, salt) {
@@ -32,6 +50,7 @@ userSchema.methods.checkPassword = function(password, callback) {
   });
 };
 
+// generate token using _id but could use uuid
 userSchema.methods.generateToken = function(secret, callback) {
   eat.encode({id: this._id}, secret, callback);
 };
