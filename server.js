@@ -7,7 +7,7 @@ var app = express();
 
 process.env.APP_SECRET = process.env.APP_SECRET || 'howtoit';
 
-var tutorialRoutes = express.Router(); // This name can be subject to change
+var tutorialRoutes = express.Router();
 var userRoutes = express.Router();
 
 mongoose.connect(process.env.MONGOLAB_URI ||
@@ -18,7 +18,7 @@ require('./lib/passport_strat')(passport);
 
 app.use(express.static(__dirname + '/build'));
 
-require('./routes/tutorial_routes')(tutorialRoutes); // Also subject to change
+require('./routes/tutorial_routes')(tutorialRoutes);
 require('./routes/user_routes')(userRoutes);
 
 app.use('/api', tutorialRoutes);

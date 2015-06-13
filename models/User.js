@@ -1,12 +1,15 @@
 'use strict';
 
 /*
- *
+ * User model
+ * Contains methods to generate uuid, hash, token
+ * and check password
  */
 
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var eat = require('eat');
+var uuid = require('uuid');
 
 var userSchema = mongoose.Schema({
   username: {type: String, required: true, unique: true},
@@ -32,8 +35,7 @@ userSchema.methods.generateHash = function(password, callback) {
   bcrypt.genSalt(8, function(err, salt) {
     bcrypt.hash(password, salt, null, function(err, hash) {
       if (err) {
-        console.log(err);
-        return res.status(500).json({msg: 'internal server error'});
+        callback(err);
       }
       callback(null, hash);
     });
@@ -43,8 +45,7 @@ userSchema.methods.generateHash = function(password, callback) {
 userSchema.methods.checkPassword = function(password, callback) {
   bcrypt.compare(password, this.basic.password, function(err, res) {
     if (err) {
-      console.log(err);
-      return res.status(500).json({msg: 'internal server error'});
+      callback(err);
     }
     callback(null, res);
   });
