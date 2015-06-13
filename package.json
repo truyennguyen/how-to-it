@@ -30,8 +30,12 @@
   "homepage": "https://github.com/MrAllen/how-to-it",
   "dependencies": {
     "body-parser": "^1.12.4",
+    "eat": "^0.1.1",
     "express": "^4.12.4",
-    "uuid": "^2.0.1"
+    "passport": "^0.2.2",
+    "passport-http": "^0.2.2",
+    "uuid": "^2.0.1",
+    "validator": "^3.40.1"
   },
   "devDependencies": {
     "angular": "^1.4.0",
