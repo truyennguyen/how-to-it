@@ -21,7 +21,7 @@ app.use(express.static(__dirname + '/build'));
 require('./routes/tutorial_routes')(tutorialRoutes); // Also subject to change
 require('./routes/user_routes')(userRoutes);
 
-app.use('/api', rewardRoutes);
+app.use('/api', tutorialRoutes);
 app.use('/api', userRoutes);
 
 app.listen(process.env.PORT || 3000, function() {

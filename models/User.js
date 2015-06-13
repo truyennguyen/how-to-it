@@ -25,7 +25,7 @@ var userSchema = mongoose.Schema({
 
 
 userSchema.methods.generateUuid = function() {
-  // Need to generate uuid
+  this.uuid = uuid.v4();
 };
 
 userSchema.methods.generateHash = function(password, callback) {
