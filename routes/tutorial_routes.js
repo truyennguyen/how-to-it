@@ -17,7 +17,7 @@ module.exports = function(router){
 
 	//Search a tutorial by caption
 	router.get('/tutorial/search', function(req, res){
-		Tutorial.findOne({'caption': req.param('captionSearch')}, function(err, data){
+		Tutorial.findOne({'caption': req.query.captionSearch}, function(err, data){
 			if(err){
 				console.log(err);
 				return res.status(500).json({msg: 'unable to find this Tutorial'});
@@ -51,20 +51,18 @@ module.exports = function(router){
 		Tutorial.findOne({'uuid': tutUuid}, function(err, data){
 			if(err){
 				console.log(err);
-				return res.status(500).json({msg: 'unable to find this Tutorial'});
+				return res.status(500).json({msg: 'unable to find this tutorial'});
 			}
 
-			for(var i = 0; i < data.votes.length; i++){
-				if(data.votes[i] === userUuid)
-					return res.status(500).json({msg: 'This user voted, no need to vote more'});
+			var index = data.votes.indexOf(userUuid);
+			if (index === -1) {
+				data.votes.push(userUuid);
+				data.save(function(err){
+					if(err)
+						return res.status(500).json({msg: 'unable to save'});
+				});
+				res.json({msg: data});
 			}
-
-			data.votes.push(userUuid);
-			data.save(function(err){
-				if(err)
-					return res.status(500).json({msg: 'unable to save'});
-			});
-			res.json({msg: data});
 		});
 	});
 
@@ -79,17 +77,16 @@ module.exports = function(router){
 				return res.status(500).json({msg: 'unable to find this Tutorial'});
 			}
 
-			for(var i = 0; i < data.votes.length; i++){
-				if(data.votes[i] === userUuid){
-
-					data.votes.splice(i, 1);
-					data.save(function(err){
-						if(err)
-							return res.status(500).json({msg: 'unable to save'});
-					});
-				}
+			var index = data.votes.indexOf(userUuid);
+			if (index !== -1) {
+				data.votes.splice(index, 1);
+				data.save(function(err) {
+					if (err) {
+						return res.status(500).json({msg: 'unable to save'});
+					}
+					res.status(200).json({msg: data});
+				});
 			}
-			res.json({msg: data});
 		});
 	});
 };
