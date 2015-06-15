@@ -89,7 +89,7 @@ module.exports = function(router){
 					});
 				}
 			}
-			res.json({msg: 'Vote has been removed'});
+			res.json({msg: data});
 		});
 	});
 };
