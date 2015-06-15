@@ -3,6 +3,7 @@
 #how-to-it
 ==========
 
+```
 get all tutorials
 	superagent localhost:3000/api/tutorial
 
@@ -22,3 +23,4 @@ remove a vote from a tutorial
 	superagent 'localhost:3000/api/tutorial/removevote?tutUuid=4572ba0b-08ee-436c-9b2e-338baa6860bd&userUuid=use3'
 	tutUuid: uuid of the tutorial
 	userUuid: uuid of user want to remove vote
+```
