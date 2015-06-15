@@ -15,6 +15,17 @@ module.exports = function(router){
 		});
 	});
 
+	//Search a tutorial by caption
+	router.get('/tutorial/search', function(req, res){
+		Tutorial.findOne({'caption': req.param('captionSearch')}, function(err, data){
+			if(err){
+				console.log(err);
+				return res.status(500).json({msg: 'unable to find this Tutorial'});
+			}
+			res.json({msg: data});
+		});
+	});
+
 	//add a new tutorials
 	router.post('/tutorial', function(req ,res){
 		var newTutorial = new Tutorial();
