@@ -46,5 +46,5 @@ describe('User routes', function() {
   after(function(done) {
     mongoose.connection.db.dropDatabase();
     done();
-  })
+  });
 });
