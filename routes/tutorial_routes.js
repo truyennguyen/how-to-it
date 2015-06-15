@@ -35,7 +35,7 @@ module.exports = function(router){
 		newTutorial.link = req.body.link;
 		newTutorial.caption = req.body.caption;
 		newTutorial.votes = [];
-		newTutorial.tags = [req.body.tags]; // Test this
+		newTutorial.tags = req.body.tags;
 		newTutorial.save(function(err, data){
 			if(err){
 				console.log(err);
