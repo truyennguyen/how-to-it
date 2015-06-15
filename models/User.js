@@ -19,9 +19,9 @@ var userSchema = mongoose.Schema({
   },
   uuid: String,
   articles: {
-    toRead: String,
-    isReading: String,
-    hasRead: String
+    toRead: [String],
+    isReading: [String],
+    hasRead: [String]
   },
   categories: [String]
 });
