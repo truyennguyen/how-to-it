@@ -9,6 +9,7 @@ require('angular-base64');
 var tutorialApp = angular.module('tutorialApp', ['ngRoute', 'ngCookies', 'base64']);
 
 // controllers
+require('./userbar/controllers/userbar_controller')(tutorialApp);
 
 // services
 

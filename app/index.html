@@ -5,6 +5,11 @@
   <title>How To It</title>
 </head>
 <body data-ng-app="tutorialApp"> <!-- app name subject to change -->
+  <section data-ng-controller="userbarController" data-ng-init="getTags()">
+    <h1>Tags:</h1>
+    <ul data-ng-repeat="tag in tags">
+      <li>{{tag}}</li>
+  </section>
 
   <script src="bundle.js"></script>
 </body>

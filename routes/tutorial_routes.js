@@ -35,7 +35,7 @@ module.exports = function(router){
 		newTutorial.link = req.body.link;
 		newTutorial.caption = req.body.caption;
 		newTutorial.votes = [];
-		newTutorial.tags = [];
+		newTutorial.tags = [req.body.tags];
 		newTutorial.save(function(err, data){
 			if(err){
 				console.log(err);
@@ -91,4 +91,16 @@ module.exports = function(router){
 			}
 		});
 	});
+
+	// generate a list of available tags
+	// TODO: test
+	router.get('/tutorial/tags', function(req, res) {
+		Tutorial.find().distinct('tags', function(err, data) {
+			if (err) {
+				console.log(err);
+				return res.status(500).json({msg: 'unable to populate tags'});
+			}
+			res.status(200).json(data);
+		});
+	})
 };
