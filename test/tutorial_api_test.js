@@ -106,5 +106,4 @@ describe('Tutorial REST api tests', function(){
 				done();
 			});
 	});
-
 });
