@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         src: ['Gruntfile.js', 'server.js', 'models/*.js', 'routes/*.js']
       },
       mocha: {
-        src: ['test/server/*test.js'],
+        src: ['test/*test.js'],
         options:{
           globals: {
             describe: true,
