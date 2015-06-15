@@ -35,7 +35,7 @@ module.exports = function(router){
 		newTutorial.link = req.body.link;
 		newTutorial.caption = req.body.caption;
 		newTutorial.votes = [];
-		newTutorial.tags = [req.body.tags];
+		newTutorial.tags = [req.body.tags]; // Test this
 		newTutorial.save(function(err, data){
 			if(err){
 				console.log(err);
@@ -102,5 +102,5 @@ module.exports = function(router){
 			}
 			res.status(200).json(data);
 		});
-	})
+	});
 };

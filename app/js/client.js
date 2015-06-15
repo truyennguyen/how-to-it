@@ -16,5 +16,5 @@ require('./userbar/controllers/userbar_controller')(tutorialApp);
 // directives
 
 tutorialApp.config(['$routeProvider', function($routeProvider) {
-  // routes go here
+  // angular routes go here
 }]);

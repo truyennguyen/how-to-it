@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <title>How To It</title>
 </head>
-<body data-ng-app="tutorialApp"> <!-- app name subject to change -->
+<body data-ng-app="tutorialApp">
+
   <section data-ng-controller="userbarController" data-ng-init="getTags()">
-    <h1>Tags:</h1>
+    <h1>Categories</h1>
     <ul data-ng-repeat="tag in tags">
       <li>{{tag}}</li>
   </section>
