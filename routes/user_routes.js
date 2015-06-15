@@ -8,11 +8,13 @@
  * redirect to /user which will be an account mainpage.
  */
 
+var secret = process.env.APP_SECRET;
+
 var bodyParser = require('body-parser');
 var validator = require('validator');
 var User = require('../models/User.js');
+var eatAuth = require('../lib/eat_auth.js')(secret);
 
-var secret = process.env.APP_SECRET;
 
  module.exports = function userRoutes(router, passport) {
   router.use(bodyParser.json());
@@ -60,16 +62,38 @@ var secret = process.env.APP_SECRET;
           console.log(err);
           return res.status(500).json({msg: 'Error saving user'});
         }
-        // Will create a new token and redirect user. For now test to see that
-        // user is saved and password is hashed.
-        return res.json(user);
+
+      user.generateToken(secret, function generateToken(err, eat) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({msg: 'error generating token'});
+        }
+      res.json({eat: eat});
+    });
       });
     });
 
   });
 
-  router.put('/update_user', function updateUser(req, res) {
-    // Need to check userSchema test get and post routes before building this
+  router.put('/update_user', eatAuth, function updateUser(req, res) {
+    // Find the user by Id
+    User.findById(req.user._id, function findUser(err, user) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'Internal service error'});
+      }
+      if (req.body.toRead) {
+        console.log(req.body.toRead);
+        user.articles.toRead.push(req.body.toRead);
+      }
+      user.save(function saveUpdatedUser(err, user) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({msg: 'Internal service error'});
+        }
+        res.json(user);
+      })
+    });
   });
 
  };

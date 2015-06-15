@@ -53,7 +53,7 @@ userSchema.methods.checkPassword = function(password, callback) {
 
 // generate token using _id but could use uuid
 userSchema.methods.generateToken = function(secret, callback) {
-  eat.encode({id: this._id}, secret, callback);
+  eat.encode({id: this.uuid}, secret, callback);
 };
 
 module.exports = mongoose.model('User', userSchema);
