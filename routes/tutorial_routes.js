@@ -46,8 +46,8 @@ module.exports = function(router){
 	//add a vote to a tutorial
 	// /api/tutorial/addvote?tutUuid=2222&userUuid=1111
 	router.get('/tutorial/addvote', function(req, res){
-		var tutUuid = req.param('tutUuid');
-		var userUuid = req.param('userUuid');
+		var tutUuid = req.query.tutUuid;
+		var userUuid = req.query.userUuid;
 		Tutorial.findOne({'uuid': tutUuid}, function(err, data){
 			if(err){
 				console.log(err);
@@ -71,8 +71,8 @@ module.exports = function(router){
 	//remove a vote to a tutorial
 	// /api/tutorial/removevote?tutUuid=2222&userUuid=1111
 	router.get('/tutorial/removevote', function(req, res){
-		var tutUuid = req.param('tutUuid');
-		var userUuid = req.param('userUuid');
+		var tutUuid = req.query.tutUuid;
+		var userUuid = req.query.userUuid;
 		Tutorial.findOne({'uuid': tutUuid}, function(err, data){
 			if(err){
 				console.log(err);

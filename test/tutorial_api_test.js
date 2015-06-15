@@ -25,8 +25,6 @@ describe('Tutorial REST api tests', function(){
 		testTutorial.votes = [];
 		testTutorial.tags = [];
 
-		console.log(testTutorial);
-
 		testTutorial.save(function(err, data){
 			if(err) throw err;
 
