@@ -1,3 +1,5 @@
+'use strict';
+
 var bodyParser = require('body-parser');
 var Tutorial = require('../models/Tutorial');
 
