@@ -11,6 +11,7 @@ var uuid = require('uuid');
 var tutorialSchema = mongoose.Schema({
   uuid: String,
   link: String,
+  img: String,
   votes: [String],
   tags: [String],
   caption: String

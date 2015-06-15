@@ -37,7 +37,8 @@
     "passport": "^0.2.2",
     "passport-http": "^0.2.2",
     "uuid": "^2.0.1",
-    "validator": "^3.40.1"
+    "validator": "^3.40.1",
+    "webshot": "^0.16.0"
   },
   "devDependencies": {
     "angular": "^1.4.0",
