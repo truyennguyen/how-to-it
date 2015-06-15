@@ -19,7 +19,7 @@ require('./lib/passport_strat')(passport);
 app.use(express.static(__dirname + '/build'));
 
 require('./routes/tutorial_routes')(tutorialRoutes);
-require('./routes/user_routes')(userRoutes);
+require('./routes/user_routes')(userRoutes, passport);
 
 app.use('/api', tutorialRoutes);
 app.use('/api', userRoutes);

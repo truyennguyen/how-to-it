@@ -14,11 +14,12 @@ var User = require('../models/User.js');
 
 var secret = process.env.APP_SECRET;
 
- module.exports = function userRoutes(router) {
+ module.exports = function userRoutes(router, passport) {
   router.use(bodyParser.json());
 
   // Will add passport basic strategy as middleware
-  router.get('/sign_in', function signIn(req, res) {
+  router.get('/sign_in', passport.authenticate('basic', {session: false}),
+    function signIn(req, res) {
     // Route should create a new token, and redirect user to homepage?
     req.user.generateToken(secret, function generateToken(err, eat) {
       if (err) {
