@@ -31,9 +31,9 @@ module.exports = function(grunt) {
       }
     },
 
-    simpemocha: {
+    simplemocha: {
       dev: {
-        src:['test/server/*.js']
+        src:['test/*.js']
       }
     },
 
@@ -83,6 +83,6 @@ module.exports = function(grunt) {
   grunt.registerTask('lint', ['jshint:server', 'jshint:mocha']);
   grunt.registerTask('karma', ['webpack:karma', 'karma:test']);
   grunt.registerTask('mocha', ['simplemocha:dev']);
-  grunt.registerTask('testall', ['karma', 'mocha']);
+  grunt.registerTask('test', ['mocha']);
   // not sure what to put for default test
 };
