@@ -1,6 +1,6 @@
 'use strict';
 
-process.env.MONGO_URI = 'mongodb://localhost/tutorials_development';
+process.env.MONGOLAB_URI = 'mongodb://localhost/tutorials_development_test';
 require('../server.js'); //run our server
 var mongoose = require('mongoose');
 var chai = require('chai');
@@ -12,9 +12,9 @@ chai.use(chaihttp);
 
 describe('Tutorial REST api tests', function(){
 	after(function(done) {
-		//mongoose.connection.db.dropDatabase(function() {
+		mongoose.connection.db.dropDatabase(function() {
 			done();
-		//});
+		});
 	});
 
 	before(function(done){
@@ -62,7 +62,7 @@ describe('Tutorial REST api tests', function(){
 				expect(res.body.msg.caption).to.eql('A1');
 				expect(res.body.msg.votes[0]).to.eql('userID1');
 				done();
-			});		
+			});
 	});
 
 	it('should be able to add a vote from userID2 to link1', function(done){
@@ -76,7 +76,7 @@ describe('Tutorial REST api tests', function(){
 				expect(res.body.msg.votes[0]).to.eql('userID1');
 				expect(res.body.msg.votes[1]).to.eql('userID2');
 				done();
-			});		
+			});
 	});
 
 	it('should be able to add a vote from userID3 to link1', function(done){
@@ -107,6 +107,6 @@ describe('Tutorial REST api tests', function(){
 				expect(res.body.msg.votes[1]).to.eql('userID3');
 				done();
 			});
-	});		
+	});
 
 });
