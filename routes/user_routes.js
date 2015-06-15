@@ -92,7 +92,7 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
           return res.status(500).json({msg: 'Internal service error'});
         }
         res.json(user);
-      })
+      });
     });
   });
 
