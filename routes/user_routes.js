@@ -43,7 +43,7 @@ var secret = process.env.APP_SECRET;
 
     newUser.generateUuid();
 
-    newUser.userName = req.body.userName;
+    newUser.username = req.body.username;
 
     newUser.basic.email = req.body.email;
 
