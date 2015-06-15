@@ -3,7 +3,48 @@
 #how-to-it
 ==========
 
+Howtoit allows user to share tutorials on topics of interest, vote for the
+tutorials that they feel are the best, and manage their tutorial library.
+
+## A Code Fellows Project - Brought to you by
+* Josh Allen
+* Nick Eagan
+* Truyen Nguyen
+
+### To create an account
+
 ```
+POST - /api/create_user
+```
+create_user expects a JSON object in the following form
+
+```
+{
+	"username": "trogdor",
+	"email": "trogdor@example.com",
+	"password": "burninate"
+}
+
+```
+
+This request will generate a token and save it as a cookie so that the user
+can access the rest of the site.
+
+### To sign in
+
+```
+GET - /api/sign_in
+```
+requests to /sign_in will verify the user's email and password in order to
+generate a new access token.
+
+```
+{
+	"email": trogdor@example.com,
+	"password": "burninate"
+}
+```
+
 get all tutorials
 	superagent localhost:3000/api/tutorial
 
