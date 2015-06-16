@@ -70,7 +70,7 @@ module.exports = function(router){
 			if (up === -1 && down === -1) {
 				// Need to pass true/false variable with req to determine up/down
 				// 'vote' is our current placeholder
-				vote ? data.upVotes.push(userUuid) : data.downVotes.push(userUuid);
+				vote ? data.upVotes.push(userUuid) : data.downVotes.push(userUuid); // jshint ignore:line
 
 				data.save(function(err) {
 					if (err) {

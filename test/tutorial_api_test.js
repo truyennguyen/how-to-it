@@ -89,7 +89,7 @@ describe('Tutorial REST api tests', function(){
 				expect(err).to.eql(null);
 				expect(res.body.msg).to.equal('vote already submitted');
 				done();
-			})
+			});
 	});
 
 	it('should be able to get all', function(done) {

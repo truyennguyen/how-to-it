@@ -99,5 +99,5 @@ module.exports = function(grunt) {
   grunt.registerTask('karma', ['webpack:karma', 'karma:test']);
   grunt.registerTask('mocha', ['simplemocha:dev']);
   grunt.registerTask('test', ['mocha']);
-  grunt_registerTask('default', ['test', 'lint']);
+  grunt.registerTask('default', ['test', 'lint']);
 };
