@@ -84,30 +84,6 @@ module.exports = function(router){
 		});
 	});
 
-	//remove a vote to a tutorial
-	// /api/tutorial/removevote?tutUuid=2222&userUuid=1111
-	// router.get('/tutorial/removevote', function(req, res){
-	// 	var tutUuid = req.query.tutUuid;
-	// 	var userUuid = req.query.userUuid;
-	// 	Tutorial.findOne({'uuid': tutUuid}, function(err, data){
-	// 		if(err){
-	// 			console.log(err);
-	// 			return res.status(500).json({msg: 'unable to find this Tutorial'});
-	// 		}
-
-	// 		var index = data.votes.indexOf(userUuid);
-	// 		if (index !== -1) {
-	// 			data.votes.splice(index, 1);
-	// 			data.save(function(err) {
-	// 				if (err) {
-	// 					return res.status(500).json({msg: 'unable to save'});
-	// 				}
-	// 				res.status(200).json({msg: data});
-	// 			});
-	// 		}
-	// 	});
-	// });
-
 	// generate a list of available tags
 	// TODO: test
 	router.get('/tutorial/tags', function(req, res) {
