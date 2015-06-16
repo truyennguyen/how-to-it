@@ -6,6 +6,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
+
 <body data-ng-app="tutorialApp">
   <nav class ="navbar navbar-inverse navbar-fixed-top">
     <section class="container-fluid">
@@ -27,11 +28,13 @@
     </section>
   </nav>
 
-  <main class="main container-fluid">
+  <div class="main container-fluid">
     <section data-sidebar-directive></section>
 
     <section data-tutorials-directive></section>
-  </main>
+  </div>
+
+  <main data-ng-view></main>
 
   <script src="bundle.js"></script>
 </body>
