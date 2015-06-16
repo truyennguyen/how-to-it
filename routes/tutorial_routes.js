@@ -57,7 +57,6 @@ module.exports = function(router){
 		var tutUuid = req.params.id;
 		var vote = req.body.vote;
 		var userUuid = req.body.uuid; // This may need to be adjusted for auth
-		var saveData = true;
 
 		Tutorial.findOne({'uuid': tutUuid}, function(err, data) {
 			if (err) {
@@ -82,19 +81,14 @@ module.exports = function(router){
 				data.downVotes.push(userUuid);
 			}
 			else
-				saveData = false;
+				return res.status(403).json({msg: 'vote already submitted'});
 
-			//save data to database
-			if(saveData === true){
-				data.save(function(err) {
-					if (err) {
-						return res.status(500).json({msg: 'unable to save'});
-					}
-						return res.status(200).json(data);
-				});
-			}
-			else
-				res.status(403).json({msg: 'vote already submitted'});
+			data.save(function(err) {
+				if (err)
+					return res.status(500).json({msg: 'unable to save'});
+				else
+					return res.status(200).json(data);
+			});
 		});
 	});
 
