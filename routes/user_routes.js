@@ -75,7 +75,7 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
 
   });
 
-  // to read is a queue of articles that the user wants to read.
+  // toRead is a queue of articles that the user wants to read.
   // if an add property is included on req.body the value of add will be
   // pushed onto the end of the queue. If this route is hit without an
   // add property the first item is returned from the queue.
@@ -93,7 +93,7 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
       } else {
         article = user.articles.toRead.$shift();
       }
-      user.save(function saveUpdatedUser(err, user) {
+      user.save(function(err, data) {
         if (err) {
           console.log(err);
           return res.status(500).json({msg: 'error updating user'});
@@ -103,23 +103,55 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
     });
   });
 
+  // hasRead functions like bookmarks for the user. This route can be called
+  // with either
   router.put('/articles/hasread', eatAuth, function hasRead(req, res) {
     User.findById(req.user._id, function(err, user) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg: 'error finding user'});
       }
+
       if (req.body.add) {
         user.articles.hasRead.push(req.body.add);
       } else if (req.body.remove) {
         user.articles.hasRead.pull(req.body.remove);
       }
-      user.save(function saveUpdatedUser(err, user) {
+
+      user.save(function(err, data) {
         if (err) {
           console.log(err);
           return res.status(500).json({msg: 'error updating user'});
         }
         return res.json({msg: 'hasRead update successful'});
+      });
+    });
+  });
+
+  // isReading contains an article that the user is currently reading.
+  // This route currently just overwrites whatever is included in isReading
+  // but should eventually include additional functionality
+  router.put('/articles/isreading', eatAuth, function isReading(req, res) {
+    var article;
+    User.findById(req.user._id, function(err, user) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'error finding user'});
+      }
+      // If we aren't setting isReading, return whatever it contains
+      if (!req.body.set) {
+         article = user.articles.isReading;
+         return res.json({msg: article});
+      }
+      // otherwise set it and return what was set
+      article = req.body.set;
+      user.articles.isReading = article;
+      user.save(function(err, data) {
+        if (err) {
+          console.log(err);
+          res.status(500).json({msg: 'There was an error saving your article'});
+        }
+        return res.json({msg: article});
       });
     });
   });
