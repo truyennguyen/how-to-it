@@ -8,7 +8,6 @@ module.exports = function(app){
     $scope.getAll = function(){
       $http.get('/api/tutorial')
         .success(function(data){
-          //console.log(data);
           $scope.tutorials = data;
         })
         .error(function(data){
