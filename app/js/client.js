@@ -16,6 +16,7 @@ require('./sidebar/controllers/sidebar_controller')(tutorialApp);
 
 // directives
 require('./sidebar/directives/sidebar_directive')(tutorialApp);
+require('./tutorials/directives/tutorials_directive')(tutorialApp);
 
 tutorialApp.config(['$routeProvider', function($routeProvider) {
   // angular routes go here
