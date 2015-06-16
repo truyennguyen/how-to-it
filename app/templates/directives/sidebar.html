@@ -1,8 +1,7 @@
-<section class="col-md-4 sidebar" data-ng-controller="sidebarController" data-ng-init="getTags()">
-  <h1>Categories</h1>
-  <ul data-ng-repeat="tag in tags">
+<section class="col-md-2 sidebar" data-ng-controller="sidebarController" data-ng-init="getTags()">
+  <ul class="nav nav-sidebar" data-ng-repeat="tag in tags">
     <li>
-      <a href="">{{tag}}</a>
+      <a href="#">{{tag}}</a>
     </li>
   </ul>
 </section>

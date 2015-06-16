@@ -3,14 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>How To It</title>
-</head>
-<body class="container" data-ng-app="tutorialApp">
-
-  <section data-sidebar-directive></section>
-
-  <section data-tutorials-directive></section>
-
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body data-ng-app="tutorialApp">
+  <nav class ="navbar navbar-inverse navbar-fixed-top">
+    <section class="container-fluid">
+      <a class="navbar-brand" href="#">Howtoit</a>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#">About</a>
+        </li>
+        <li>
+          <a href="#">Profile</a>
+        </li>
+        <li>
+          <a href="#">Help</a>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" placeholder="Does not work">
+      </form>
+    </section>
+  </nav>
+
+  <main class="main container-fluid">
+    <section data-sidebar-directive></section>
+
+    <section data-tutorials-directive></section>
+  </main>
+
   <script src="bundle.js"></script>
 </body>
 </html>
