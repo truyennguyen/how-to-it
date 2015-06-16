@@ -25,6 +25,7 @@ module.exports = function(app){
 
       $http(req)
       .success(function(data){
+        $scope.tutorials[$scope.tutorials.indexOf(tutorial)] = data;
       })
       .error(function(data){
         console.log(data);

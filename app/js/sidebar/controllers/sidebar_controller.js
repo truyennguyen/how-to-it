@@ -1,7 +1,7 @@
 
 
 /*
- * Controller for user sidebar
+ * Controller for tutorial
  */
 
 module.exports = function(app) {
