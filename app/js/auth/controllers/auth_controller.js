@@ -20,13 +20,22 @@
               return $scope.errors.push(err);
             }
             console.log('Account created successfully');
+            // Will redirect to main page.
+
           });
         }
       };
 
       // Sign in an existing user
       $scope.authSignIn = function(user) {
-        console.log(user);
+        auth.signIn(user, function(err) {
+          if (err) {
+            console.log(err);
+            return $scope.errors.push(err);
+          }
+          console.log('Sign in successful');
+          // Will redirect to main page.
+        });
       }
     }]);
  };
