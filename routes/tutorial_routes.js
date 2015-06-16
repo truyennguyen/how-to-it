@@ -57,6 +57,7 @@ module.exports = function(router){
 		var tutUuid = req.params.id;
 		var vote = req.body.vote;
 		var userUuid = req.body.uuid; // This may need to be adjusted for auth
+		var saveData = true;
 
 		Tutorial.findOne({'uuid': tutUuid}, function(err, data) {
 			if (err) {
@@ -67,20 +68,33 @@ module.exports = function(router){
 			var up = data.upVotes.indexOf(userUuid);
 			var down = data.downVotes.indexOf(userUuid);
 
-			if (up === -1 && down === -1) {
-				// Need to pass true/false variable with req to determine up/down
-				// 'vote' is our current placeholder
-				vote ? data.upVotes.push(userUuid) : data.downVotes.push(userUuid); // jshint ignore:line
+			//update upVotes/downVotes
+			if(vote === true && up === -1 && down === -1)
+				data.upVotes.push(userUuid)
+			else if(vote === false && up === -1 && down === -1)
+				data.downVotes.push(userUuid);
+			else if(vote === true && up === -1 && down != -1){
+				data.downVotes.splice(down, 1);
+				data.upVotes.push(userUuid);
+			}
+			else if(vote === false && up != -1 && down === -1){
+				data.upVotes.splice(up, 1);
+				data.downVotes.push(userUuid);
+			}
+			else
+				saveData = false;
 
+			//save data to database
+			if(saveData === true){
 				data.save(function(err) {
 					if (err) {
 						return res.status(500).json({msg: 'unable to save'});
 					}
-					return res.status(200).json(data);
+						return res.status(200).json(data);
 				});
-			} else {
-				res.status(403).json({msg: 'vote already submitted'});
 			}
+			else
+				res.status(403).json({msg: 'vote already submitted'});
 		});
 	});
 

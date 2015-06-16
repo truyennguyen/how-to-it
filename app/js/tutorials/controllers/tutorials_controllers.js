@@ -23,8 +23,6 @@ module.exports = function(app){
         data: {uuid: 'userID77', vote: vote}
       }
 
-      //console.log(req);
-
       $http(req)
       .success(function(data){
       })
