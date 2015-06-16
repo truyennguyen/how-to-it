@@ -15,5 +15,23 @@ module.exports = function(app){
           $scope.errors.push({msg: 'error retrieving tutorials'});
         });
     };
+
+    $scope.vote = function(vote, tutorial){
+      var req = {
+        method: 'PUT',
+        url: '/api/tutorial/addvote/' + tutorial.uuid,
+        data: {uuid: 'userID77', vote: vote}
+      }
+
+      //console.log(req);
+
+      $http(req)
+      .success(function(data){
+      })
+      .error(function(data){
+        console.log(data);
+          $scope.errors.push({msg: 'could not change the vote'});
+      });
+    };
   }]);
 };
