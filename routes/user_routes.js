@@ -75,23 +75,27 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
 
   });
 
-  router.put('/update_user', eatAuth, function updateUser(req, res) {
-    // Find the user by Id
+  router.put('/articles/toread', eatAuth, function toRead(req, res) {
+    // find the user by id
+    var article;
     User.findById(req.user._id, function findUser(err, user) {
       if (err) {
         console.log(err);
-        return res.status(500).json({msg: 'Internal service error'});
+        return res.status(500).json({msg: 'error finding user'});
       }
-      if (req.body.toRead) {
-        console.log(req.body.toRead);
-        user.articles.toRead.push(req.body.toRead);
+      if (req.body.add) {
+        console.log(req.body.add);
+        article = req.body.add;
+        user.articles.toRead.push(req.body.add);
+      } else {
+        article = user.articles.toRead.shift();
       }
       user.save(function saveUpdatedUser(err, user) {
         if (err) {
           console.log(err);
-          return res.status(500).json({msg: 'Internal service error'});
+          return res.status(500).json({msg: 'error updating user'});
         }
-        res.json(user);
+        return res.json({msg: article});
       });
     });
   });
