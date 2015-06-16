@@ -12,7 +12,6 @@ var tutorialApp = angular.module('tutorialApp', ['ngRoute', 'ngCookies', 'base64
 require('./tutorials/controllers/tutorials_controllers')(tutorialApp);
 require('./sidebar/controllers/sidebar_controller')(tutorialApp);
 
-
 // services
 
 // directives
