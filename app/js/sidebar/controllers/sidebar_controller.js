@@ -5,7 +5,7 @@
  */
 
 module.exports = function(app) {
-  app.controller('userbarController', ['$scope', '$http', function($scope, $http) {
+  app.controller('sidebarController', ['$scope', '$http', function($scope, $http) {
     $scope.errors = [];
     $scope.tags = [];
 
