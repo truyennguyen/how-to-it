@@ -10,11 +10,12 @@ var tutorialApp = angular.module('tutorialApp', ['ngRoute', 'ngCookies', 'base64
 
 // controllers
 require('./tutorials/controllers/tutorials_controllers')(tutorialApp);
-require('./userbar/controllers/userbar_controller')(tutorialApp);
+require('./sidebar/controllers/sidebar_controller')(tutorialApp);
 
 // services
 
 // directives
+require('./sidebar/directives/sidebar_directive')(tutorialApp);
 
 tutorialApp.config(['$routeProvider', function($routeProvider) {
   // angular routes go here
