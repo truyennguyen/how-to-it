@@ -4,8 +4,8 @@
       <li>
         {{tutorial.caption}} {{tutorial.upVotes.length}}
         {{tutorial.downVotes.length}}
-        <button data-ng-click="vote(true, tutorial)">Up Vote</button>
-        <button data-ng-click="vote(false, tutorial)">Down Vote</button>
+        <a><i class="fa fa-chevron-up" data-ng-click="vote(true, tutorial)"></i></a>
+        <a><i class="fa fa-chevron-down" data-ng-click="vote(false, tutorial)"></i></a>
       </li>
     </ul>
 </section>
