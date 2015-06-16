@@ -7,13 +7,7 @@
 <body data-ng-app="tutorialApp">
 
   <section data-sidebar-directive></section>
-
-  <main data-ng-controller="tutorialsController" data-ng-init="getAll()">
-    <ul data-ng-repeat="tutorial in tutorials">
-      <li>{{tutorial.caption}} {{tutorial.votes.length}}
-      </li>
-    </ul>
-  </main>
+  <section data-tutorials-directive></section>
   <script src="bundle.js"></script>
 </body>
 </html>
