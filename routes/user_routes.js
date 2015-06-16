@@ -75,20 +75,23 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
 
   });
 
+  // to read is a queue of articles that the user wants to read.
+  // if an add property is included on req.body the value of add will be
+  // pushed onto the end of the queue. If this route is hit without an
+  // add property the first item is returned from the queue.
   router.put('/articles/toread', eatAuth, function toRead(req, res) {
     // find the user by id
     var article;
-    User.findById(req.user._id, function findUser(err, user) {
+    User.findById(req.user._id, function(err, user) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg: 'error finding user'});
       }
       if (req.body.add) {
-        console.log(req.body.add);
         article = req.body.add;
-        user.articles.toRead.push(req.body.add);
+        user.articles.toRead.push(article);
       } else {
-        article = user.articles.toRead.shift();
+        article = user.articles.toRead.$shift();
       }
       user.save(function saveUpdatedUser(err, user) {
         if (err) {
@@ -96,6 +99,27 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
           return res.status(500).json({msg: 'error updating user'});
         }
         return res.json({msg: article});
+      });
+    });
+  });
+
+  router.put('/articles/hasread', eatAuth, function hasRead(req, res) {
+    User.findById(req.user._id, function(err, user) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'error finding user'});
+      }
+      if (req.body.add) {
+        user.articles.hasRead.push(req.body.add);
+      } else if (req.body.remove) {
+        user.articles.hasRead.pull(req.body.remove);
+      }
+      user.save(function saveUpdatedUser(err, user) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({msg: 'error updating user'});
+        }
+        return res.json({msg: 'hasRead update successful'});
       });
     });
   });
