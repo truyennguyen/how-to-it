@@ -44,7 +44,7 @@ generate a new access token.
 	"password": "burninate"
 }
 ```
-
+```
 get all tutorials
 	superagent localhost:3000/api/tutorial
 
