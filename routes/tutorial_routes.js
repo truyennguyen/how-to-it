@@ -26,7 +26,7 @@ module.exports = function(router){
 				console.log(err);
 				return res.status(500).json({msg: 'unable to find this Tutorial'});
 			}
-			res.json({msg: data});
+			res.json(data);
 		});
 	});
 

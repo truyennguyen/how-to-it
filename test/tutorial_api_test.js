@@ -97,6 +97,8 @@ describe('Tutorial REST api tests', function(){
 			.get('/api/tutorial')
 			.end(function(err, res) {
 				expect(err).to.eql(null);
+				expect(res.body).to.have.length(2);
+				expect(Array.isArray(res.body)).to.eql(true);
 				done();
 			});
 	});
