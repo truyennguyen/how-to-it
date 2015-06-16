@@ -1,4 +1,4 @@
-'use strict';
+
 
 /*
  * Controller for user sidebar
@@ -14,7 +14,7 @@ module.exports = function(app) {
         .success(function(data) {
           data.forEach(function(tag) {
             $scope.tags.push(tag);
-          })
+          });
         })
         .error(function(data) {
           console.log(data);
@@ -22,4 +22,4 @@ module.exports = function(app) {
         });
     };
   }]);
-}
+};

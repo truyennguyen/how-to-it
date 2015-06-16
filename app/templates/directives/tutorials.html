@@ -2,7 +2,10 @@
     <h1>Tutorials</h1>
     <ul data-ng-repeat="tutorial in tutorials">
       <li>
-        {{tutorial.caption}} {{tutorial.votes.length}}
+        {{tutorial.caption}} {{tutorial.upVotes.length}}
+        {{tutorial.caption}} {{tutorial.downVotes.length}}
+        <button data-ng-click="vote(true, tutorial)">Up Vote</button>
+        <button data-ng-click="vote(false, tutorial)">Down Vote</button>
       </li>
     </ul>
 </section>

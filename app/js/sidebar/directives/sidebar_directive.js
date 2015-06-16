@@ -10,6 +10,6 @@ module.exports = function(app) {
       restrict: 'AC',
       replace: true,
       templateUrl: '/templates/directives/sidebar.html'
-    }
+    };
   });
 };

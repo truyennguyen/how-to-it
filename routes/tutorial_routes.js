@@ -26,7 +26,7 @@ module.exports = function(router){
 				console.log(err);
 				return res.status(500).json({msg: 'unable to find this Tutorial'});
 			}
-			res.json({msg: data});
+			res.json(data);
 		});
 	});
 
@@ -40,7 +40,8 @@ module.exports = function(router){
 		newTutorial.link = req.body.link;
 		newTutorial.img = imgAddress;
 		newTutorial.caption = req.body.caption;
-		newTutorial.votes = [];
+		newTutorial.upVotes = [];
+		newTutorial.downvotes = [];
 		newTutorial.tags = req.body.tags;
 		newTutorial.save(function(err, data){
 			if(err){
@@ -51,50 +52,49 @@ module.exports = function(router){
 		});
 	});
 
-	//add a vote to a tutorial
-	// /api/tutorial/addvote?tutUuid=2222&userUuid=1111
-	router.get('/tutorial/addvote', function(req, res){
-		var tutUuid = req.query.tutUuid;
-		var userUuid = req.query.userUuid;
-		Tutorial.findOne({'uuid': tutUuid}, function(err, data){
-			if(err){
+	// add a vote to a tutorial
+	router.put('/tutorial/addvote/:id', function(req, res) {
+		var tutUuid = req.params.id;
+		var vote = req.body.vote;
+		var userUuid = req.body.uuid; // This may need to be adjusted for auth
+		var saveData = true;
+
+		Tutorial.findOne({'uuid': tutUuid}, function(err, data) {
+			if (err) {
 				console.log(err);
-				return res.status(500).json({msg: 'unable to find this tutorial'});
+				return res.status(500).json({msg: 'unable to find tutorial'});
 			}
+			// Disable on front end to avoid this check
+			var up = data.upVotes.indexOf(userUuid);
+			var down = data.downVotes.indexOf(userUuid);
 
-			var index = data.votes.indexOf(userUuid);
-			if (index === -1) {
-				data.votes.push(userUuid);
-				data.save(function(err){
-					if(err)
-						return res.status(500).json({msg: 'unable to save'});
-				});
-				res.json({msg: data});
+			//update upVotes/downVotes
+			if(vote === true && up === -1 && down === -1)
+				data.upVotes.push(userUuid)
+			else if(vote === false && up === -1 && down === -1)
+				data.downVotes.push(userUuid);
+			else if(vote === true && up === -1 && down != -1){
+				data.downVotes.splice(down, 1);
+				data.upVotes.push(userUuid);
 			}
-		});
-	});
-
-	//remove a vote to a tutorial
-	// /api/tutorial/removevote?tutUuid=2222&userUuid=1111
-	router.get('/tutorial/removevote', function(req, res){
-		var tutUuid = req.query.tutUuid;
-		var userUuid = req.query.userUuid;
-		Tutorial.findOne({'uuid': tutUuid}, function(err, data){
-			if(err){
-				console.log(err);
-				return res.status(500).json({msg: 'unable to find this Tutorial'});
+			else if(vote === false && up != -1 && down === -1){
+				data.upVotes.splice(up, 1);
+				data.downVotes.push(userUuid);
 			}
+			else
+				saveData = false;
 
-			var index = data.votes.indexOf(userUuid);
-			if (index !== -1) {
-				data.votes.splice(index, 1);
+			//save data to database
+			if(saveData === true){
 				data.save(function(err) {
 					if (err) {
 						return res.status(500).json({msg: 'unable to save'});
 					}
-					res.status(200).json({msg: data});
+						return res.status(200).json(data);
 				});
 			}
+			else
+				res.status(403).json({msg: 'vote already submitted'});
 		});
 	});
 
