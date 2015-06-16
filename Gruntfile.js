@@ -76,6 +76,14 @@ module.exports = function(grunt) {
         src: '**/*.html',
         dest: 'build/',
         filter: 'isFile'
+      },
+      css: {
+        cwd: 'app/',
+        expand: true,
+        flatten: false,
+        src: '**/*.css',
+        dest: 'build/',
+        filter: 'isFile'
       }
     },
 
@@ -93,7 +101,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('build:dev', ['webpack:client', 'copy:html']);
+  grunt.registerTask('build:dev', ['webpack:client', 'copy:html', 'copy:css']);
   grunt.registerTask('build', ['build:dev']);
   grunt.registerTask('lint', ['jshint:server', 'jshint:mocha', 'jshint:client']);
   grunt.registerTask('karma', ['webpack:karma', 'karma:test']);
