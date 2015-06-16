@@ -2,6 +2,8 @@
 
 var bodyParser = require('body-parser');
 var Tutorial = require('../models/Tutorial');
+var webShotFunction = require('../lib/web_shot_func.js');
+var uuid = require('uuid');
 
 module.exports = function(router){
 	router.use(bodyParser.json());
@@ -30,12 +32,16 @@ module.exports = function(router){
 
 	//add a new tutorials
 	router.post('/tutorial', function(req ,res){
+		// generate filename for tutorial screenshot
+		var imgAddress = './img/' + uuid.v4() + '.jpeg';
+		webShotFunction(req.body.link, imgAddress);
 		var newTutorial = new Tutorial();
 		newTutorial.generateUuid();
 		newTutorial.link = req.body.link;
+		newTutorial.img = imgAddress;
 		newTutorial.caption = req.body.caption;
 		newTutorial.votes = [];
-		newTutorial.tags = [];
+		newTutorial.tags = req.body.tags;
 		newTutorial.save(function(err, data){
 			if(err){
 				console.log(err);
@@ -89,6 +95,18 @@ module.exports = function(router){
 					res.status(200).json({msg: data});
 				});
 			}
+		});
+	});
+
+	// generate a list of available tags
+	// TODO: test
+	router.get('/tutorial/tags', function(req, res) {
+		Tutorial.find().distinct('tags', function(err, data) {
+			if (err) {
+				console.log(err);
+				return res.status(500).json({msg: 'unable to populate tags'});
+			}
+			res.status(200).json(data);
 		});
 	});
 };

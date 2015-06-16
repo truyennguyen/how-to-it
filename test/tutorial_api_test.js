@@ -23,7 +23,7 @@ describe('Tutorial REST api tests', function(){
 		testTutorial.link = "this is link1";
 		testTutorial.caption = "A1";
 		testTutorial.votes = [];
-		testTutorial.tags = [];
+		testTutorial.tags = ['AngularJS', 'JavaScript'];
 
 		testTutorial.save(function(err, data){
 			if(err) throw err;
@@ -41,7 +41,7 @@ describe('Tutorial REST api tests', function(){
 	it('should be able to create 1st tutorial', function(done) {
 		chai.request('localhost:3000')
 			.post('/api/tutorial')
-			.send({link:"this is link2", caption:"A2"})
+			.send({link:"this is link2", caption:"A2", tags: ['JavaScript', 'Node.js']})
 			.end(function(err, res) {
 				expect(err).to.eql(null);
 				expect(res.body.msg.link).to.eql('this is link2');
@@ -103,6 +103,26 @@ describe('Tutorial REST api tests', function(){
 				expect(res.body.msg.votes[0]).to.eql('userID1');
 				expect(res.body.msg.votes[1]).not.to.eql('userID2');
 				expect(res.body.msg.votes[1]).to.eql('userID3');
+				done();
+			});
+	});
+
+	it('should be able to get all', function(done) {
+		chai.request('localhost:3000')
+			.get('/api/tutorial')
+			.end(function(err, res) {
+				expect(err).to.eql(null);
+				done();
+			});
+	});
+
+	it('should be able to generate a list of unique tags', function(done) {
+		chai.request('localhost:3000')
+			.get('/api/tutorial/tags')
+			.end(function(err, res) {
+				expect(err).to.eql(null);
+				expect(res.body).to.have.length(3);
+				expect(Array.isArray(res.body)).to.eql(true);
 				done();
 			});
 	});
