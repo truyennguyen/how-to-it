@@ -4,9 +4,10 @@ require('angular/angular');
 require('angular-route');
 require('angular-cookies');
 require('angular-base64');
+require('angular-bootstrap');
 
 // module name is subject to change
-var tutorialApp = angular.module('tutorialApp', ['ngRoute', 'ngCookies', 'base64']);
+var tutorialApp = angular.module('tutorialApp', ['ngRoute', 'ngCookies', 'base64', 'ui.bootstrap']);
 
 // controllers
 require('./tutorials/controllers/tutorials_controllers')(tutorialApp);

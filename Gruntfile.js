@@ -26,6 +26,14 @@ module.exports = function(grunt) {
           }
         }
       },
+      client: {
+        src: ['app/**/*.js'],
+        options:{
+          globals: {
+            angular: true
+          }
+        }
+      },
       options: {
         node: true
       }
@@ -75,14 +83,21 @@ module.exports = function(grunt) {
       dev: {
         src: 'build/'
       }
+    },
+
+    watch: {
+      scripts: {
+        files: ['app/**/*.js'],
+        tasks: ['build']
+      }
     }
   });
 
   grunt.registerTask('build:dev', ['webpack:client', 'copy:html']);
   grunt.registerTask('build', ['build:dev']);
-  grunt.registerTask('lint', ['jshint:server', 'jshint:mocha']);
+  grunt.registerTask('lint', ['jshint:server', 'jshint:mocha', 'jshint:client']);
   grunt.registerTask('karma', ['webpack:karma', 'karma:test']);
   grunt.registerTask('mocha', ['simplemocha:dev']);
   grunt.registerTask('test', ['mocha']);
-  // not sure what to put for default test
+  grunt.registerTask('default', ['test', 'lint']);
 };
