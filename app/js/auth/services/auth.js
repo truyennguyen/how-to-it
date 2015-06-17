@@ -16,10 +16,10 @@ module.exports = function authService(app) {
         signIn: function signIn(user, callback) {
           var encoded = $base64.encode(user.email + ':' + user.password);
           $http.get('/api/sign_in', {
-            headers: {'Authorization': 'Basic ' + encoded}
-          })
+              headers: {'Authorization': 'Basic ' + encoded}
+            })
             .success(function(data) {
-              $cookies.put('eat', data.eat);
+              $cookies.put('eat', data.eat); // data.token?
               callback(null);
             })
             .error(function(data) {
@@ -32,12 +32,23 @@ module.exports = function authService(app) {
         create: function create(user, callback) {
           $http.post('/api/create_user', user)
             .success(function(data) {
-              $cookies.put('eat', data.eat);
+              $cookies.put('eat', data.eat); // data.token?
               callback(null);
             })
             .error(function(data) {
               callback(data);
             });
+        },
+
+        //auth.logout sets the eat to an empty string
+        logout: function() {
+          $cookies.put('eat', '');
+        },
+
+        // auth.isSignedIn checks if eat exists and if it has any length
+        // returns the result
+        isSignedIn: function() {
+          return !!($cookies.get('eat') && $cookies.get('eat').length);
         }
       };
     }]);
