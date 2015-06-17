@@ -1,11 +1,13 @@
-<section class='col-md-10 col-md-offset-2 main tutorials' data-ng-controller='tutorialsController' data-ng-init='getAll()'>
+<section class='col-md-10 col-md-offset-2 main' data-ng-controller='tutorialsController' data-ng-init='getAll()'>
     <h1>Tutorials</h1>
-    <ul data-ng-repeat="tutorial in tutorials">
-      <li>
-        {{tutorial.caption}} {{tutorial.upVotes.length}}
-        {{tutorial.downVotes.length}}
-        <button data-ng-click="vote(true, tutorial)">Up Vote</button>
-        <button data-ng-click="vote(false, tutorial)">Down Vote</button>
-      </li>
-    </ul>
+    <div class="well well-lg" data-ng-repeat="tutorial in tutorials">
+      <div class="vote">
+        <a><i class="fa fa-chevron-up fa-lg arrow" data-ng-click="vote(true, tutorial)"></i></a>
+        <h3 class="diff">{{tutorial.upVotes.length - tutorial.downVotes.length}}</h3>
+        <a><i class="fa fa-chevron-down fa-lg arrow" data-ng-click="vote(false, tutorial)"></i></a>
+      </div>
+      <div class="content">
+        <a class="caption" href="http://{{tutorial.link}}" target="_blank">{{tutorial.caption}}</a>
+      </div>
+    </div>
 </section>
