@@ -73,6 +73,7 @@ first item in the array
 	"msg": "article"
 }
 ```
+
 ```
 PUT - /api/articles/hasread [AUTH required]
 ```
@@ -108,9 +109,11 @@ otherwise it will act as a getter.
 }
 ```
 #### Response
+```
 {
 	"msg": "article"
 }
+```
 
 ```
 get all tutorials
