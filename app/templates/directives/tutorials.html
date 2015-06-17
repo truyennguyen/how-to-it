@@ -1,10 +1,8 @@
 <section class='col-md-10 col-md-offset-2 main'
   data-ng-controller="tutorialsController" data-ng-init="getAll()">
 
-  <h1>Tutorials:</h1>
-
   <div data-ng-repeat="tutorial in tutorials | orderBy: '-rank'">
-    <div>
+    <div class="tut">
       <p>
         <a><i class="fa fa-chevron-up fa-lg arrow" data-ng-click="voteUp(tutorial)"></i></a>
         <span class="rank">{{ tutorial.rank }}</span>

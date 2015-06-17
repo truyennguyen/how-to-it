@@ -39,3 +39,53 @@ a {
 .caption {
   font-size: 30px;
 }
+
+.tut {
+  position: relative;
+  border: 1px solid black;
+  margin: 5px 0;
+  height: 150px;
+}
+
+span.rank {
+  position: absolute;
+  display: inline-block;
+  width: 54px;
+  height: 54px;
+  text-align: center;
+  top: 52px;
+  left: 10px;
+  font-size: 2em;
+  color: #555;
+}
+
+i.fa {
+  font-size: 3em;
+  color: #CCC;
+
+}
+
+i.fa:hover {
+  color: red;
+}
+
+i.fa-chevron-up {
+  position: absolute;
+  top: 25px;
+  left: 10px;
+}
+
+i.fa-chevron-down {
+  position: absolute;
+  top: 75px;
+  left: 10px;
+}
+
+span.link {
+  display: block;
+  text-align: center;
+}
+
+.main {
+  padding-top: 40px;
+}
