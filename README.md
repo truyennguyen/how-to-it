@@ -44,6 +44,77 @@ generate a new access token.
 	"password": "burninate"
 }
 ```
+
+### Article Storage
+
+Users can store articles into 3 different places within the application.
+toRead acts as a queue of articles that the user plans to read and uses first
+in first out.
+
+```
+PUT - /api/articles/toread  [AUTH required]
+```
+
+#### Request
+
+to add an article to toRead send an object with an add property with the put
+```
+{
+	"add": "article"
+}
+```
+if no add property is present the toRead array will remove and return the
+first item in the array
+
+#### Response
+
+```
+{
+	"msg": "article"
+}
+```
+
+```
+PUT - /api/articles/hasread [AUTH required]
+```
+to add an article to the users hasRead collection include an add field. To
+remove an article from the users has read collection include a remove field
+
+#### Request
+```
+{
+	"add": "article",
+	"remove": "article"
+}
+```
+
+#### Response
+```
+{
+	"msg": "hasRead update successful"
+}
+```
+
+```
+PUT - /api/articles/isreading [AUTH required]
+```
+This route contains the current article that the user is reading and wants to
+come back to. If an object with a "set" property is sent it acts as a setter
+otherwise it will act as a getter.
+
+#### Request
+```
+{
+	"set": "article"
+}
+```
+#### Response
+```
+{
+	"msg": "article"
+}
+```
+
 ```
 get all tutorials
 	superagent localhost:3000/api/tutorial
