@@ -8,9 +8,9 @@ var uuid = require('uuid');
 module.exports = function(router){
 	router.use(bodyParser.json());
 
-	//get all tutorials
+	//Get all tutorials, sort by upVotesSize
 	router.get('/tutorial', function(req, res){
-		Tutorial.find({}, function(err, data){
+		Tutorial.find( { $query: {}, $orderby: { upVotesSize: -1 } }, function(err, data){
 			if(err){
 				console.log(err);
 				return res.status(500).json({msg: 'error to get tutorials'});
@@ -40,8 +40,6 @@ module.exports = function(router){
 		newTutorial.link = req.body.link;
 		newTutorial.img = imgAddress;
 		newTutorial.caption = req.body.caption;
-		newTutorial.upVotes = [];
-		newTutorial.downvotes = [];
 		newTutorial.tags = req.body.tags;
 		newTutorial.save(function(err, data){
 			if(err){
@@ -68,15 +66,23 @@ module.exports = function(router){
 			var down = data.downVotes.indexOf(userUuid);
 
 			//update upVotes/downVotes
-			if(vote === true && up === -1 && down === -1)
-				data.upVotes.push(userUuid)
-			else if(vote === false && up === -1 && down === -1)
+			if(vote === true && up === -1 && down === -1){
+				data.upVotesSize++;
+				data.upVotes.push(userUuid);
+			}
+			else if(vote === false && up === -1 && down === -1){
+				data.downVotesSize++;
 				data.downVotes.push(userUuid);
+			}
 			else if(vote === true && up === -1 && down != -1){
+				data.downVotesSize--;
+				data.upVotesSize++;
 				data.downVotes.splice(down, 1);
 				data.upVotes.push(userUuid);
 			}
 			else if(vote === false && up != -1 && down === -1){
+				data.upVotesSize--;
+				data.downVotesSize++;
 				data.upVotes.splice(up, 1);
 				data.downVotes.push(userUuid);
 			}

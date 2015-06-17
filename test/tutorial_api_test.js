@@ -22,8 +22,6 @@ describe('Tutorial REST api tests', function(){
 		testTutorial.generateUuid();
 		testTutorial.link = "this is link1";
 		testTutorial.caption = "A1";
-		testTutorial.upVotes = [];
-		testTutorial.downVotes = [];
 		testTutorial.tags = ['AngularJS', 'JavaScript'];
 
 		testTutorial.save(function(err, data){
