@@ -49,47 +49,6 @@ describe('Tutorial REST api tests', function(){
 			});
 	});
 
-	it('should be able to add an up vote from userID1 to link1', function(done) {
-		var tutUuid = this.testTutorial.uuid;
-		chai.request('localhost:3000')
-			.put('/api/tutorial/addvote/' + tutUuid)
-			.send({uuid: 'userID1', vote: true})
-			.end(function(err, res) {
-				expect(err).to.eql(null);
-				expect(res.body.upVotes).to.have.length(1);
-				expect(res.body.upVotes).to.include('userID1');
-				expect(res.body.downVotes).to.have.length(0);
-				done();
-			});
-	});
-
-	it('should be able to add a down vote from userID2 to link1', function(done) {
-		var tutUuid = this.testTutorial.uuid;
-		chai.request('localhost:3000')
-			.put('/api/tutorial/addvote/' + tutUuid)
-			.send({uuid: 'userID2', vote: false})
-			.end(function(err, res) {
-				expect(err).to.eql(null);
-				expect(res.body.upVotes).to.have.length(1);
-				expect(res.body.upVotes).to.not.include('userID2');
-				expect(res.body.downVotes).to.have.length(1);
-				expect(res.body.downVotes).to.include('userID2');
-				done();
-			});
-	});
-
-	it('should prevent a user from voting multiple times', function(done) {
-		var tutUuid = this.testTutorial.uuid;
-		chai.request('localhost:3000')
-			.put('/api/tutorial/addvote/' + tutUuid)
-			.send({uuid: 'userID1', vote: true})
-			.end(function(err, res) {
-				expect(err).to.eql(null);
-				expect(res.body.msg).to.equal('vote already submitted');
-				done();
-			});
-	});
-
 	it('should be able to get all', function(done) {
 		chai.request('localhost:3000')
 			.get('/api/tutorial')
