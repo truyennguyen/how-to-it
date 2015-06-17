@@ -1,12 +1,19 @@
-<section data-ng-controller="authController">
+<section class='col-md-10 col-md-offset-2' data-ng-controller="authController">
+
+  <h1>Sign In</h1>
+
   <form data-ng-submit="authSignIn(user)">
 
-    <label for="email">Email:</label>
-    <input type="text" name="email" data-ng-model="user.email">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" required name="email" data-ng-model="user.email">
+    </div>
 
-    <label for="password">Password:</label>
-    <input type="password" name="password" data-ng-model="user.password">
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" required name="password" data-ng-model="user.password">
+    </div>
 
-    <button type="submit">Sign in</button>
+    <button type="submit" class="btn btn-primary">Sign In</button>
   </form>
 </section>
