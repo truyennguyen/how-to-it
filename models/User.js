@@ -20,7 +20,7 @@ var userSchema = mongoose.Schema({
   uuid: String,
   articles: {
     toRead: [String],
-    isReading: [String],
+    isReading: String,
     hasRead: [String]
   },
   categories: [String]
