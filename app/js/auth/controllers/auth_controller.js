@@ -17,11 +17,9 @@
           auth.create(user, function(err) {
             if (err) {
               console.log(err);
-              return $scope.errors.push(err);
+              return $scope.errors.push({msg: 'could not create user'});
             }
-            console.log('Account created successfully');
-            // Will redirect to main page.
-
+            $location.path('/rewards');
           });
         }
       };
@@ -31,10 +29,9 @@
         auth.signIn(user, function(err) {
           if (err) {
             console.log(err);
-            return $scope.errors.push(err);
+            return $scope.errors.push({msg: 'could not sign in'});
           }
-          console.log('Sign in successful');
-          // Will redirect to main page.
+          $location.path('/rewards');
         });
       }
     }]);
