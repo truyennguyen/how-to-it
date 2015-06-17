@@ -40,10 +40,6 @@ module.exports = function(router){
 		newTutorial.link = req.body.link;
 		newTutorial.img = imgAddress;
 		newTutorial.caption = req.body.caption;
-		newTutorial.upVotes = [];
-		newTutorial.upVotesSize = 0;
-		newTutorial.downvotes = [];
-		newTutorial.downVotesSize = 0;
 		newTutorial.tags = req.body.tags;
 		newTutorial.save(function(err, data){
 			if(err){
