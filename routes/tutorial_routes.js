@@ -41,6 +41,7 @@ module.exports = function(router){
 		newTutorial.img = imgAddress;
 		newTutorial.caption = req.body.caption;
 		newTutorial.tags = req.body.tags;
+		newTutorial.rank = 0;
 		newTutorial.save(function(err, data){
 			if(err){
 				console.log(err);
@@ -50,50 +51,22 @@ module.exports = function(router){
 		});
 	});
 
-	// add a vote to a tutorial
 	router.put('/tutorial/addvote/:id', function(req, res) {
-		var tutUuid = req.params.id;
-		var vote = req.body.vote;
-		var userUuid = req.body.uuid; // This may need to be adjusted for auth
 
-		Tutorial.findOne({'uuid': tutUuid}, function(err, data) {
+		Tutorial.findOne({'uuid': req.params.id}, function(err, data) {
 			if (err) {
 				console.log(err);
 				return res.status(500).json({msg: 'unable to find tutorial'});
 			}
-			// Disable on front end to avoid this check
-			var up = data.upVotes.indexOf(userUuid);
-			var down = data.downVotes.indexOf(userUuid);
+			// If there is an up vote present add one to rank. otherwise subtract one
+			req.body.up ? data.rank += 1 : data.rank -= 1;
 
-			//update upVotes/downVotes
-			if(vote === true && up === -1 && down === -1){
-				data.upVotesSize++;
-				data.upVotes.push(userUuid);
-			}
-			else if(vote === false && up === -1 && down === -1){
-				data.downVotesSize++;
-				data.downVotes.push(userUuid);
-			}
-			else if(vote === true && up === -1 && down != -1){
-				data.downVotesSize--;
-				data.upVotesSize++;
-				data.downVotes.splice(down, 1);
-				data.upVotes.push(userUuid);
-			}
-			else if(vote === false && up != -1 && down === -1){
-				data.upVotesSize--;
-				data.downVotesSize++;
-				data.upVotes.splice(up, 1);
-				data.downVotes.push(userUuid);
-			}
-			else
-				return res.status(403).json({msg: 'vote already submitted'});
-
-			data.save(function(err) {
-				if (err)
-					return res.status(500).json({msg: 'unable to save'});
-				else
-					return res.status(200).json(data);
+			data.save(function(err, updated) {
+				if (err) {
+					console.log(err);
+					return res.status(500).json({msg: 'unable to process vote'});
+				}
+				res.json(updated);
 			});
 		});
 	});

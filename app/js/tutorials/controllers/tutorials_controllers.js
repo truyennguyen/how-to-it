@@ -16,21 +16,33 @@ module.exports = function(app){
         });
     };
 
-    $scope.vote = function(vote, tutorial){
-      var req = {
-        method: 'PUT',
-        url: '/api/tutorial/addvote/' + tutorial.uuid,
-        data: {uuid: 'userID2', vote: vote}
-      }
-
-      $http(req)
-      .success(function(data){
-        $scope.tutorials[$scope.tutorials.indexOf(tutorial)] = data;
-      })
-      .error(function(data){
-        console.log(data);
-          $scope.errors.push({msg: 'could not change the vote'});
-      });
+    $scope.voteUp = function(tutorial) {
+      var id = tutorial.uuid;
+      var obj = {
+        up: true
+      };
+      vote(id, obj);
     };
+
+    $scope.voteDn = function(tutorial) {
+      var id = tutorial.uuid;
+      var obj = {
+        down: true
+      };
+      vote(id, obj);
+    };
+
+    function vote(id, obj) {
+      $http.put('/api/tutorial/addvote/' + id, obj)
+        .success(function(data) {
+          $scope.getAll();
+        })
+        .error(function(data) {
+          console.log(data);
+          $scope.errors.push({msg: 'could not update vote'});
+        });
+    }
+
+
   }]);
 };
