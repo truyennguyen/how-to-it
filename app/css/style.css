@@ -12,11 +12,26 @@
   border-right: 5px solid;
 }
 
-.main {
+.vote {
+  display: inline-block;
+}
 
+.content {
+  display: inline-block;
+  position: relative;
+  bottom: 71px;
+  left: 25px;
+}
+
+.diff {
+  position: relative;
 }
 
 a {
   color: #000000;
   font-size: 18px;
+}
+
+.caption {
+  font-size: 30px;
 }
