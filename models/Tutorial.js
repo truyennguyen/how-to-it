@@ -13,7 +13,9 @@ var tutorialSchema = mongoose.Schema({
   link: String,
   img: String,
   upVotes: [String],
+  upVotesSize:Number,
   downVotes: [String],
+  downVotesSize:Number,
   tags: [String],
   caption: String
 });
