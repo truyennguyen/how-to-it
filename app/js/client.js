@@ -24,6 +24,10 @@ require('./tutorials/directives/tutorials_directive')(tutorialApp);
 tutorialApp.config(['$routeProvider', function($routeProvider) {
   // angular routes go here
   $routeProvider
+    .when('/', {
+      templateUrl: 'templates/directives/tutorials.html',
+      controller: 'tutorialsController'
+    })
     .when('/sign_in', {
       templateUrl: 'templates/views/sign_in.html',
       controller: 'authController'
