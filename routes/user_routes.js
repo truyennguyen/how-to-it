@@ -22,13 +22,13 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
   // Will add passport basic strategy as middleware
   router.get('/sign_in', passport.authenticate('basic', {session: false}),
     function signIn(req, res) {
-    // Route should create a new token, and redirect user to homepage?
-    req.user.generateToken(secret, function generateToken(err, eat) {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({msg: 'error generating token'});
-      }
-      res.json({eat: eat});
+      // Route should create a new token, and redirect user to homepage?
+      req.user.generateToken(secret, function generateToken(err, eat) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json({msg: 'error generating token'});
+        }
+        res.json({eat: eat});
     });
   });
 
@@ -63,16 +63,15 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
           return res.status(500).json({msg: 'Error saving user'});
         }
 
-      user.generateToken(secret, function generateToken(err, eat) {
-        if (err) {
-          console.log(err);
-          return res.status(500).json({msg: 'error generating token'});
-        }
-      res.json({eat: eat});
-    });
+        user.generateToken(secret, function generateToken(err, eat) {
+          if (err) {
+            console.log(err);
+            return res.status(500).json({msg: 'error generating token'});
+          }
+        res.json({eat: eat});
+        });
       });
     });
-
   });
 
   // toRead is a queue of articles that the user wants to read.
@@ -155,5 +154,4 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
       });
     });
   });
-
  };

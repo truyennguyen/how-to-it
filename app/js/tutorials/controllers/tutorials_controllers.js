@@ -20,7 +20,7 @@ module.exports = function(app){
       var req = {
         method: 'PUT',
         url: '/api/tutorial/addvote/' + tutorial.uuid,
-        data: {uuid: 'userID3', vote: vote}
+        data: {uuid: 'userID2', vote: vote}
       }
 
       $http(req)
