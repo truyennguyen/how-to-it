@@ -1,19 +1,30 @@
-<section data-ng-controller="authController">
+<section class='col-md-10 col-md-offset-2' data-ng-controller="authController">
+
+  <h1>Create Account</h1>
+
   <form data-ng-submit="authCreate(user)">
 
-    <label for="username">Username:</label>
-    <input type="text" name="username" data-ng-model="user.username">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" required name="username" data-ng-model="user.username">
+    </div>
 
-    <label for="email">Email:</label>
-    <input type="text" name="email" data-ng-model="user.email">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" required name="email" data-ng-model="user.email">
+    </div>
 
-    <label for="password">Password:</label>
-    <input type="password" name="password" data-ng-model="user.password">
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" required name="password" data-ng-model="user.password">
+    </div>
 
-    <label for="confirmation">Confirm Password:</label>
-    <input type="password" name="confirmation" data-ng-model="user.confirmation">
+    <div class="form-group">
+      <label for="confirmation">Confirm Password:</label>
+      <input type="password" class="form-control" required name="confirmation" data-ng-model="user.confirmation">
+    </div>
 
-    <button type="submit">Create Account</button>
+    <button type="submit" class="btn btn-primary">Create Account</button>
 
   </form>
 </section>
