@@ -7,13 +7,13 @@
       <li>
         <a href="#/">Home</a>
       </li>
-      <li>
+      <li data-ng-if="!signedIn()">
         <a href="#/sign_in">Sign In</a>
       </li>
-      <li>
+      <li data-ng-if="!signedIn()">
         <a href="#/create_user">Create Account</a>
       </li>
-      <li data-ng-show="signedIn()">
+      <li data-ng-if="signedIn()">
         <a data-ng-click="signOut()">Log Out</a>
       </li>
     </ul>

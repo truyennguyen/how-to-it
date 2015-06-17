@@ -1,9 +1,13 @@
 'use strict';
 
 module.exports = function(app){
-  app.controller('tutorialsController', ['$scope', '$http', function($scope, $http){
+  app.controller('tutorialsController', ['$scope', '$http', '$cookies', function($scope, $http, $cookies){
     $scope.errors = [];
     $scope.tutorials = [];
+
+    // is this actually going into the header?
+    var eat = $cookies.get('eat');
+    $http.defaults.headers.common.eat = eat;
 
     $scope.getAll = function(){
       $http.get('/api/tutorial')

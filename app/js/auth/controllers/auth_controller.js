@@ -19,7 +19,7 @@
               console.log(err);
               return $scope.errors.push({msg: 'could not create user'});
             }
-            $location.path('/rewards');
+            $location.path('/');
           });
         }
       };
@@ -31,7 +31,7 @@
             console.log(err);
             return $scope.errors.push({msg: 'could not sign in'});
           }
-          $location.path('/rewards');
+          $location.path('/');
         });
       }
     }]);
