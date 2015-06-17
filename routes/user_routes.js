@@ -104,7 +104,7 @@ var eatAuth = require('../lib/eat_auth.js')(secret);
   });
 
   // hasRead functions like bookmarks for the user. This route can be called
-  // with either
+  // with either add to add an article to the bookmarks or remove to remove
   router.put('/articles/hasread', eatAuth, function hasRead(req, res) {
     User.findById(req.user._id, function(err, user) {
       if (err) {
