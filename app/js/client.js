@@ -20,6 +20,7 @@ require('./auth/controllers/auth_controller')(tutorialApp);
 // directives
 require('./sidebar/directives/sidebar_directive')(tutorialApp);
 require('./tutorials/directives/tutorials_directive')(tutorialApp);
+require('./auth/directives/navbar_directive')(tutorialApp);
 
 tutorialApp.config(['$routeProvider', function($routeProvider) {
   // angular routes go here
