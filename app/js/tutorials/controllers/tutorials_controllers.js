@@ -1,18 +1,30 @@
 'use strict';
 
+var _ = require('lodash/collection');
+
 module.exports = function(app){
   app.controller('tutorialsController', ['$scope', '$http', '$cookies', function($scope, $http, $cookies){
     $scope.errors = [];
     $scope.tutorials = [];
+    // these should be rendered in a better way
+    $scope.tags = ['JavaScript', 'Node', 'Angular', 'React', 'HTML', 'CSS'];
 
     // is this actually going into the header?
     var eat = $cookies.get('eat');
     $http.defaults.headers.common.eat = eat;
 
-    $scope.getAll = function(){
+    $scope.getAll = function(filter){
       $http.get('/api/tutorial')
         .success(function(data){
-          $scope.tutorials = data;
+          if (filter) {
+            $scope.tutorials = _.filter(data, function(obj) {
+              return _.includes(obj.tags, filter);
+            });
+          } else {
+            $scope.tutorials = data;
+            console.log(data);
+          }
+          console.log($scope.tutorials);
         })
         .error(function(data){
           console.log(data);
