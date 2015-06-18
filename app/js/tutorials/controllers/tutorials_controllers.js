@@ -67,12 +67,12 @@ module.exports = function(app){
     $scope.addNewTutorial = function(tut){
       var newTut = angular.copy(tut);
       clearForm(tut);
+      $scope.toggleCreate();
       $scope.tutorials.push(newTut);
 
       $http.post('/api/tutorial', newTut)
         .success(function(data){
           $scope.getAll();
-          $scope.toggleCreate();
         })
         .error(function(err){
           console.log(err);
