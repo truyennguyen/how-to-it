@@ -41,6 +41,7 @@ module.exports = function(router){
 		// newTutorial.img = imgAddress;
 		newTutorial.caption = req.body.caption;
 		newTutorial.tags = req.body.tags;
+		newTutorial.description = req.body.description;
 		newTutorial.rank = 0;
 		newTutorial.save(function(err, data){
 			if(err){
