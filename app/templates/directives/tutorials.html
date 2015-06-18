@@ -11,9 +11,9 @@
     <div data-ng-repeat="tutorial in tutorials | orderBy: '-rank'">
       <div class="tut">
         <p>
-          <a><i class="fa fa-chevron-up fa-lg arrow" data-ng-click="voteUp(tutorial)"></i></a>
+          <a><i class="fa fa-angle-up" data-ng-click="voteUp(tutorial)"></i></a>
           <span class="rank">{{ tutorial.rank }}</span>
-          <a><i class="fa fa-chevron-down fa-lg arrow" data-ng-click="voteDn(tutorial)"></i></a>
+          <a><i class="fa fa-angle-down" data-ng-click="voteDn(tutorial)"></i></a>
           <span class = "link"><a href="{{ tutorial.link }}" target="_blank">{{ tutorial.caption }}</a></span>
         </p>
       </div>
