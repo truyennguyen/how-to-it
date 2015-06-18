@@ -50,34 +50,34 @@ a {
 span.rank {
   position: absolute;
   display: inline-block;
-  width: 54px;
+  width: 34px;
   height: 54px;
   text-align: center;
-  top: 52px;
+  top: 59px;
   left: 10px;
-  font-size: 2em;
+  font-size: 1.5em;
   color: #555;
 }
 
-i.fa {
+.fa-angle-up, .fa-angle-down {
   font-size: 3em;
   color: #CCC;
 
 }
 
-i.fa:hover {
-  color: red;
+.fa-angle-up:hover, .fa-angle-down:hover{
+  color: blue;
 }
 
-i.fa-chevron-up {
+.fa-angle-up {
   position: absolute;
-  top: 25px;
+  top: 20px;
   left: 10px;
 }
 
-i.fa-chevron-down {
+.fa-angle-down {
   position: absolute;
-  top: 75px;
+  top: 70px;
   left: 10px;
 }
 
@@ -88,4 +88,55 @@ span.link {
 
 .main {
   padding-top: 40px;
+}
+
+/*--- nav bar styles ---*/
+
+.navbar-form {
+  margin-left: -20px;
+}
+
+.navbar-left .form-control {
+  margin-top: 0px;
+  height: 30px;
+  padding: 2px 35px;
+  font-size: 12px;
+  font-style: italic;
+  border-radius: 0;
+  vertical-align: text-top;
+}
+
+.fa-search {
+  position: absolute;
+  top: 17px;
+  left: 22px;
+  color: #555;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #FFF;
+  font-family: "Helvetica Neue";
+  font-style: italic;
+  font-size: 1.75em;
+  font-weight: 200;
+  text-shadow: 1px 1px 1px #A6A6A6;
+}
+
+.navbar-inverse .navbar-brand:hover {
+  color: #0000ff !important;
+  text-shadow: 1px 1px 1px #0000ff !important;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #FFF;
+  font-weight: 200;
+  font-size: 1.25em;
+  text-shadow: 1px 1px 1px #A6A6A6;
+  margin-right: 25px;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+  color: #0000ff;
+  font-weight: 200;
+  text-shadow: 1px 1px 1px #0000ff;
 }
