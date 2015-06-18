@@ -32,6 +32,18 @@ module.exports = function(app){
         });
     };
 
+    $scope.addNewTutorial = function(){
+      $http.post('/api/tutorial', $scope.newTutorial)
+        .success(function(data){
+          $scope.tutorials.push(data);
+          $scope.newTutorial = null;
+        })
+        .error(function(err){
+          console.log(err);
+          $scope.error.push({msg: 'could not create new tutorial'});
+        });
+    };
+
     $scope.voteUp = function(tutorial) {
       var id = tutorial.uuid;
       var obj = {
