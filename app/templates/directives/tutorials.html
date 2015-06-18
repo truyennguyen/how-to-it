@@ -11,7 +11,7 @@
     <div class="controls">
       <a title="Menu"><i class="fa fa-bars"></i></a>
       <a title="Bookmarks"><i class="fa fa-star"></i></a>
-      <a data-ng-click="createNew()"title="Share a tutorial"><i class="fa fa-share"></i></a>
+      <a data-ng-click="toggleCreate()"title="Share a tutorial"><i class="fa fa-share"></i></a>
       <a title="Comments"><i class="fa fa-comments"></i></a>
     </div>
 
@@ -36,12 +36,14 @@
         </div>
 
         <div class="checkbox">
+          <label for="tags">Tags:</label>
           <label class="checkbox-inline" for="tags" data-ng-repeat="tag in tags">
             <label><input type="checkbox" class="checkbox" name="tags" checklist-model="tut.tags" checklist-value="tag">{{tag}}</label>
           </label>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-default" data-ng-click="toggleCreate(tut)">Cancel</button>
       </form>
     </div>
 
