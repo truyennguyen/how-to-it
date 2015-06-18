@@ -31,9 +31,18 @@ module.exports = function(app){
       'Karma'
     ];
 
+    $scope.create = false;
     // is this actually going into the header?
     var eat = $cookies.get('eat');
     $http.defaults.headers.common.eat = eat;
+
+    $scope.creationMode = function() {
+      return $scope.create;
+    };
+
+    $scope.createNew = function() {
+      $scope.create ? $scope.create = false : $scope.create = true;
+    };
 
     $scope.getAll = function(filter){
       $http.get('/api/tutorial')
@@ -51,6 +60,20 @@ module.exports = function(app){
         .error(function(data){
           console.log(data);
           $scope.errors.push({msg: 'error retrieving tutorials'});
+        });
+    };
+
+    $scope.addNewTutorial = function(tut){
+      var newTut = angular.copy(tut);
+      $scope.tutorials.push(newTut);
+
+      $http.post('/api/tutorial', newTut)
+        .success(function(data){
+          $scope.tutorials.splice($scope.tutorials.indexOf(newTut), 1, data);
+        })
+        .error(function(err){
+          console.log(err);
+          $scope.error.push({msg: 'could not create new tutorial'});
         });
     };
 

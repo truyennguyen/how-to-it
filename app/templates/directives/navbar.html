@@ -8,6 +8,9 @@
     </form>
     <a class="navbar-brand" href="#/">HowToIt!</a>
     <ul class="nav navbar-nav navbar-right">
+      <li data-ng-if="signedIn()">
+        <a href="#/user_page">User</a>
+      </li>
       <li>
         <a href="#/">Home</a>
       </li>
