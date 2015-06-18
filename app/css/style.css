@@ -151,10 +151,10 @@ input.form-control:focus {
 .navbar-inverse .navbar-brand {
   color: #c9c9c9;
   font-family: "Helvetica Neue";
-  font-size: 1.25em;
+  font-size: 1.75em;
   font-weight: 400;
   text-shadow: 0px 0px 0px #E3E3E3;
-  padding-left: 35px;
+  padding-left: 43px;
 }
 
 .navbar-inverse .navbar-brand:hover {
@@ -178,4 +178,15 @@ input.form-control:focus {
 
 .sidebar .nav>li>a {
   font: normal 1em/1.8 "Helvetica";
+}
+
+.controls {
+  margin-top: -25px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #404040;
+}
+
+.controls a {
+  padding-left: 15px;
+  padding-right: 25px;
 }

@@ -1,6 +1,5 @@
 <main data-ng-controller="tutorialsController" data-ng-init="getAll()">
   <section class="col-md-2 sidebar">
-      <a data-ng-click="createNew()">Add Tutorial</a>
     <ul class="nav nav-sidebar" data-ng-repeat="tag in tags">
       <li>
         <a data-ng-click="getAll(tag)">{{tag}}</a>
@@ -9,6 +8,12 @@
   </section>
 
   <section class='col-md-10 col-md-offset-2 main'>
+    <div class="controls">
+      <a title="Menu"><i class="fa fa-bars"></i></a>
+      <a title="Bookmarks"><i class="fa fa-star"></i></a>
+      <a data-ng-click="createNew()"title="Share a tutorial"><i class="fa fa-share"></i></a>
+      <a title="Comments"><i class="fa fa-comments"></i></a>
+    </div>
 
     <div data-ng-if="creationMode()">
       <h1>Submit A New Tutorial</h1>
