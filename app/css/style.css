@@ -54,48 +54,53 @@ a:hover {
 
 .tut {
   position: relative;
-  border: 1px solid black;
   margin: 5px 0;
-  height: 150px;
+  height: 75px;
 }
 
 span.rank {
   position: absolute;
   display: inline-block;
-  width: 34px;
-  height: 54px;
+  width: 26px;
+  height: 41px;
   text-align: center;
-  top: 59px;
+  top: 25px;
   left: 10px;
-  font-size: 1.5em;
-  color: #555;
+  font-size: 1.25em;
+  color: #c9c9c9;
 }
 
 .fa-angle-up, .fa-angle-down {
-  font-size: 3em;
-  color: #CCC;
+  font-size: 2.25em;
+  color: #c9c9c9;
 
 }
 
 .fa-angle-up:hover, .fa-angle-down:hover{
-  color: blue;
+  color: #E3E3E3;
 }
 
 .fa-angle-up {
   position: absolute;
-  top: 20px;
+  top: 0px;
   left: 10px;
 }
 
 .fa-angle-down {
   position: absolute;
-  top: 70px;
+  top: 31px;
   left: 10px;
 }
 
 span.link {
   display: block;
-  text-align: center;
+  text-align: left;
+  padding-left: 45px;
+  padding-top: 25px;
+}
+
+span.link a {
+  font-size: 1.25em;
 }
 
 .main {
