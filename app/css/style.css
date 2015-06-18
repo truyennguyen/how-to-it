@@ -55,7 +55,17 @@ a:hover {
 .tut {
   position: relative;
   margin: 5px 0;
-  height: 75px;
+  height: 125px;
+}
+
+.tut p {
+  display: block;
+  margin-top: -10px;
+  height: 60px;
+  width: 900px;
+  overflow: hidden;
+  padding-left: 50px;
+  color: #e1e1e1;
 }
 
 span.rank {
@@ -64,7 +74,7 @@ span.rank {
   width: 26px;
   height: 41px;
   text-align: center;
-  top: 25px;
+  top: 56px;
   left: 10px;
   font-size: 1.25em;
   color: #c9c9c9;
@@ -82,20 +92,20 @@ span.rank {
 
 .fa-angle-up {
   position: absolute;
-  top: 0px;
+  top: 23px;
   left: 10px;
 }
 
 .fa-angle-down {
   position: absolute;
-  top: 31px;
+  top: 69px;
   left: 10px;
 }
 
 span.link {
   display: block;
   text-align: left;
-  padding-left: 45px;
+  padding-left: 10px;
   padding-top: 25px;
 }
 
