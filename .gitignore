@@ -5,3 +5,4 @@
 .env
 **/build/
 **/bundle.js
+**/img/

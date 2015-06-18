@@ -1,0 +1,24 @@
+<section class='col-md-10 col-md-offset-2' data-ng-controller="tutorialController">
+
+  <h1>Submit A New Tutorial</h1>
+
+  <form data-ng-submit="addNewTutorial(tut)">
+
+    <div class="form-group">
+      <label for="title">Caption:</label>
+      <input type="text" class="form-control" required name="title" data-ng-model="tut.caption">
+    </div>
+
+    <div class="form-group">
+      <label for="link">Url:</label>
+      <input type="password" class="form-control" placeholder="http://" required name="link" data-ng-model="tut.link">
+    </div>
+
+    <div class="form-group">
+      <label for="tags">Labels:</label>
+      <input type="password" class="form-control" required name="password" data-ng-model="user.password">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sign In</button>
+  </form>
+</section>

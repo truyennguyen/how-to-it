@@ -8,10 +8,18 @@ module.exports = function(app){
     $scope.tutorials = [];
     // these should be rendered in a better way
     $scope.tags = ['JavaScript', 'Node', 'Angular', 'React', 'HTML', 'CSS'];
-
+    $scope.create = false;
     // is this actually going into the header?
     var eat = $cookies.get('eat');
     $http.defaults.headers.common.eat = eat;
+
+    $scope.creationMode = function() {
+      return $scope.create;
+    };
+
+    $scope.createNew = function() {
+      $scope.create ? $scope.create = false : $scope.create = true;
+    };
 
     $scope.getAll = function(filter){
       $http.get('/api/tutorial')
@@ -32,11 +40,13 @@ module.exports = function(app){
         });
     };
 
-    $scope.addNewTutorial = function(){
-      $http.post('/api/tutorial', $scope.newTutorial)
+    $scope.addNewTutorial = function(tut){
+      var newTut = angular.copy(tut);
+      $scope.tutorials.push(newTut);
+
+      $http.post('/api/tutorial', newTut)
         .success(function(data){
-          $scope.tutorials.push(data);
-          $scope.newTutorial = null;
+          $scope.tutorials.splice($scope.rewards.indexOf(newTut), 1, data);
         })
         .error(function(err){
           console.log(err);
