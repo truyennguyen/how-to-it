@@ -200,3 +200,17 @@ input.form-control:focus {
   padding-left: 15px;
   padding-right: 25px;
 }
+
+h1 {
+  color: #c9c9c9;
+}
+
+label {
+  font-weight: 400;
+  color: #e1e1e1;
+}
+
+.form-group .form-control {
+  background-color: #e1e1e1;
+  color: #404040;
+}
