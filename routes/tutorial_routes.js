@@ -59,7 +59,7 @@ module.exports = function(router){
 				return res.status(500).json({msg: 'unable to find tutorial'});
 			}
 			// If there is an up vote present add one to rank. otherwise subtract one
-			req.body.up ? data.rank += 1 : data.rank -= 1;
+			req.body.up ? data.rank += 1 : data.rank -= 1; // jshint ignore:line
 
 			data.save(function(err, updated) {
 				if (err) {

@@ -3,7 +3,7 @@
 var _ = require('lodash/collection');
 
 module.exports = function(app){
-  app.controller('tutorialsController', ['$scope', '$http', '$cookies', function($scope, $http, $cookies){
+  app.controller('tutorialsController', ['$scope', '$http', '$cookies', 'clearForm', function($scope, $http, $cookies, clearForm){
     $scope.errors = [];
     $scope.tutorials = [];
     // these should be rendered in a better way
@@ -30,8 +30,11 @@ module.exports = function(app){
       'Jasmine',
       'Karma'
     ];
-
+    $scope.tag = {
+      tags: []
+    };
     $scope.create = false;
+
     // is this actually going into the header?
     var eat = $cookies.get('eat');
     $http.defaults.headers.common.eat = eat;
@@ -41,7 +44,7 @@ module.exports = function(app){
     };
 
     $scope.createNew = function() {
-      $scope.create ? $scope.create = false : $scope.create = true;
+      $scope.create ? $scope.create = false : $scope.create = true; // jshint ignore:line
     };
 
     $scope.getAll = function(filter){
@@ -53,9 +56,7 @@ module.exports = function(app){
             });
           } else {
             $scope.tutorials = data;
-            console.log(data);
           }
-          console.log($scope.tutorials);
         })
         .error(function(data){
           console.log(data);
@@ -65,15 +66,16 @@ module.exports = function(app){
 
     $scope.addNewTutorial = function(tut){
       var newTut = angular.copy(tut);
+      clearForm(tut);
       $scope.tutorials.push(newTut);
 
       $http.post('/api/tutorial', newTut)
         .success(function(data){
-          $scope.tutorials.splice($scope.tutorials.indexOf(newTut), 1, data);
+          $scope.getAll();
         })
         .error(function(err){
           console.log(err);
-          $scope.error.push({msg: 'could not create new tutorial'});
+          $scope.errors.push({msg: 'could not create new tutorial'});
         });
     };
 

@@ -9,7 +9,6 @@
   </section>
 
   <section class='col-md-10 col-md-offset-2 main'>
-
     <div data-ng-if="creationMode()">
       <h1>Submit A New Tutorial</h1>
 
@@ -25,12 +24,14 @@
           <input type="text" class="form-control" required name="link" data-ng-model="tut.link">
         </div>
 
-        <div class="form-group">
-          <label for="tags">Labels:</label>
-          <input type="text" class="form-control" required name="password" data-ng-model="user.password">
+        <div class="checkbox">
+          <label class="checkbox-inline" for="tags" data-ng-repeat="tag in tags">
+            <input type="checkbox" class="checkbox" value="" name="tags" checklist-model="tut.tags" checklist-value="tag">
+            {{tag}}
+          </label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
 

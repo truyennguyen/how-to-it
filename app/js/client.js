@@ -5,12 +5,13 @@ require('angular-route');
 require('angular-cookies');
 require('angular-base64');
 require('angular-bootstrap');
+require('checklist-model/checklist-model');
 
-// module name is subject to change
-var tutorialApp = angular.module('tutorialApp', ['ngRoute', 'ngCookies', 'base64', 'ui.bootstrap']);
+var tutorialApp = angular.module('tutorialApp', ['ngRoute', 'ngCookies', 'base64', 'ui.bootstrap', 'checklist-model']);
 
 // services
 require('./auth/services/auth')(tutorialApp);
+require('./tutorials/services/clear_form')(tutorialApp);
 
 // controllers
 require('./tutorials/controllers/tutorials_controllers')(tutorialApp);
