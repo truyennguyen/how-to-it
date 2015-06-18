@@ -49,7 +49,6 @@ module.exports = function authService(app) {
         // returns the result
         isSignedIn: function isSignedIn() {
           return !!($cookies.get('eat') && $cookies.get('eat').length);
-          console.log('isSignedIn check');
         }
       };
     }]);
