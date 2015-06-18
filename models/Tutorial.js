@@ -12,6 +12,7 @@ var tutorialSchema = mongoose.Schema({
   uuid: String,
   link: String,
   img: String,
+  description: String,
   voted: [String],
   rank: Number,
   tags: [String],
