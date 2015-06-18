@@ -30,6 +30,11 @@
           <input type="text" class="form-control" required name="link" data-ng-model="tut.link">
         </div>
 
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" class="form-control" required name="description" data-ng-model="tut.description">
+        </div>
+
         <div class="checkbox">
           <label class="checkbox-inline" for="tags" data-ng-repeat="tag in tags">
             <input type="checkbox" class="checkbox" value="" name="tags" checklist-model="tut.tags" checklist-value="tag">
@@ -48,6 +53,7 @@
           <span class="rank">{{ tutorial.rank }}</span>
           <a><i class="fa fa-angle-down" data-ng-click="voteDn(tutorial)"></i></a>
           <span class = "link"><a href="{{ tutorial.link }}" target="_blank">{{ tutorial.caption }}</a></span>
+          <p>{{ tutorial.description}}</p>
         </p>
       </div>
     </div>
