@@ -34,5 +34,8 @@ tutorialApp.config(['$routeProvider', function($routeProvider) {
     .when('/create_user', {
       templateUrl: 'templates/views/create_user.html',
       controller: 'authController'
+    })
+    .when('/user_page', {
+      templateUrl: 'templates/views/user_page.html'
     });
 }]);
