@@ -1,8 +1,6 @@
 <main data-ng-controller="tutorialsController" data-ng-init="getAll()">
   <section class="col-md-2 sidebar">
-    <h3>
       <a data-ng-click="createNew()">Add Tutorial</a>
-    </h3>
     <ul class="nav nav-sidebar" data-ng-repeat="tag in tags">
       <li>
         <a data-ng-click="getAll(tag)">{{tag}}</a>

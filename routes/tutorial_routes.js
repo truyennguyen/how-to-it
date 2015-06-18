@@ -2,7 +2,7 @@
 
 var bodyParser = require('body-parser');
 var Tutorial = require('../models/Tutorial');
-var webShotFunction = require('../lib/web_shot_func.js');
+// var webShotFunction = require('../lib/web_shot_func.js');
 var uuid = require('uuid');
 
 module.exports = function(router){
@@ -33,12 +33,12 @@ module.exports = function(router){
 	//add a new tutorials
 	router.post('/tutorial', function(req ,res){
 		// generate filename for tutorial screenshot
-		var imgAddress = './img/' + uuid.v4() + '.jpeg';
-		webShotFunction(req.body.link, imgAddress);
+		// var imgAddress = './img/' + uuid.v4() + '.jpeg';
+		// webShotFunction(req.body.link, imgAddress);
 		var newTutorial = new Tutorial();
 		newTutorial.generateUuid();
 		newTutorial.link = req.body.link;
-		newTutorial.img = imgAddress;
+		// newTutorial.img = imgAddress;
 		newTutorial.caption = req.body.caption;
 		newTutorial.tags = req.body.tags;
 		newTutorial.rank = 0;
