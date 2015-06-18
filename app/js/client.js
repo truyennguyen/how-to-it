@@ -14,11 +14,9 @@ require('./auth/services/auth')(tutorialApp);
 
 // controllers
 require('./tutorials/controllers/tutorials_controllers')(tutorialApp);
-require('./sidebar/controllers/sidebar_controller')(tutorialApp);
 require('./auth/controllers/auth_controller')(tutorialApp);
 
 // directives
-require('./sidebar/directives/sidebar_directive')(tutorialApp);
 require('./tutorials/directives/tutorials_directive')(tutorialApp);
 require('./auth/directives/navbar_directive')(tutorialApp);
 
