@@ -46,7 +46,7 @@ module.exports = function(app){
 
       $http.post('/api/tutorial', newTut)
         .success(function(data){
-          $scope.tutorials.splice($scope.rewards.indexOf(newTut), 1, data);
+          $scope.tutorials.splice($scope.tutorials.indexOf(newTut), 1, data);
         })
         .error(function(err){
           console.log(err);
