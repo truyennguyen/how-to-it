@@ -7,7 +7,30 @@ module.exports = function(app){
     $scope.errors = [];
     $scope.tutorials = [];
     // these should be rendered in a better way
-    $scope.tags = ['JavaScript', 'Node', 'Angular', 'React', 'HTML', 'CSS'];
+    $scope.tags = [
+      'JavaScript',
+      'Node.js',
+      'Express',
+      'Grunt',
+      'Angular.js',
+      'React',
+      'Flux',
+      'lodash',
+      'io.js',
+      'Mocha',
+      'Chai',
+      'Mongoose',
+      'MongoDB',
+      'Sequalize',
+      'PostgreSQL',
+      'Webpack',
+      'Browserify',
+      'Bower',
+      'Gulp',
+      'Jasmine',
+      'Karma'
+    ];
+
     $scope.create = false;
     // is this actually going into the header?
     var eat = $cookies.get('eat');
