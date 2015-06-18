@@ -102,10 +102,12 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('build:dev', ['webpack:client', 'copy:html', 'copy:css']);
+  grunt.registerTask('build:karma', ['webpack:karma_test']);
   grunt.registerTask('build', ['build:dev']);
   grunt.registerTask('lint', ['jshint:server', 'jshint:mocha', 'jshint:client']);
   grunt.registerTask('mocha', ['simplemocha:dev']);
+  grunt.registerTask('testKarma', ['webpack:karma_test', 'karma:test']);
+  grunt.registerTask('mochakarma', ['mocha', 'karma:test']);
   grunt.registerTask('test', ['mocha']);
   grunt.registerTask('default', ['test', 'lint']);
-  grunt.registerTask('testKarma', ['webpack:karma_test', 'karma:test']);
 };

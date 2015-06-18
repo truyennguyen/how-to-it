@@ -42,12 +42,13 @@ describe('tutorials controller', function(){
     });
 
     it('should be able to save a new tutorial', function(){
-      $scope.newTutorial = {caption: 'testCaption', link: 'testLink', rank: 0};
+      var newTutorial= {caption: 'testCaption', link: 'testLink', rank: 0};
       $httpBackend.expectPOST('/api/tutorial').respond(200, {caption: 'testCaption', link: 'testLink'});
-      $scope.addNewTutorial();
-      $httpBackend.flush();
+      $scope.addNewTutorial(newTutorial);
       expect($scope.tutorials[0].caption).toBe('testCaption');
       expect($scope.tutorials[0].link).toBe('testLink');
+      $httpBackend.expectGET('/api/tutorial').respond(200);
+      $httpBackend.flush();
     });
   });
 });
