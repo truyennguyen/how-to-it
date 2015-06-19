@@ -50,5 +50,18 @@ describe('tutorials controller', function(){
       $httpBackend.expectGET('/api/tutorial').respond(200);
       $httpBackend.flush();
     });
+
+    it('should add a new tutorial even on server error', function() {
+
+    });
+
+    it('should be able to get all', function() {
+      $httpBackend.expectGET('/api/tutorial').respond(200, [{caption: 'test', link: 'test.com', description: 'testing' }]);
+      $scope.getAll();
+      $httpBackend.flush();
+      expect($scope.tutorials[0].caption).toBe('test');
+      expect($scope.tutorials[0].link).toBe('test.com');
+      expect($scope.tutorials[0].description).toBe('testing');
+    });
   });
 });
