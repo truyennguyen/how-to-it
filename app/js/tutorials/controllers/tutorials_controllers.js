@@ -43,7 +43,7 @@ module.exports = function(app){
       return $scope.create;
     };
 
-    $scope.createNew = function() {
+    $scope.toggleCreate = function() {
       $scope.create ? $scope.create = false : $scope.create = true; // jshint ignore:line
     };
 
@@ -67,6 +67,7 @@ module.exports = function(app){
     $scope.addNewTutorial = function(tut){
       var newTut = angular.copy(tut);
       clearForm(tut);
+      $scope.toggleCreate();
       $scope.tutorials.push(newTut);
 
       $http.post('/api/tutorial', newTut)
