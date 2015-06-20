@@ -3,6 +3,7 @@
 var bodyParser = require('body-parser');
 var Tutorial = require('../models/Tutorial');
 // var webShotFunction = require('../lib/web_shot_func.js');
+var eatAuth = require('../lib/eat_auth.js')(process.env.APP_SECRET)
 var uuid = require('uuid');
 
 module.exports = function(router){
@@ -31,7 +32,7 @@ module.exports = function(router){
 	});
 
 	//add a new tutorials
-	router.post('/tutorial', function(req ,res){
+	router.post('/tutorial', eatAuth, function(req ,res){
 		// generate filename for tutorial screenshot
 		// var imgAddress = './img/' + uuid.v4() + '.jpeg';
 		// webShotFunction(req.body.link, imgAddress);
@@ -52,7 +53,7 @@ module.exports = function(router){
 		});
 	});
 
-	router.put('/tutorial/addvote/:id', function(req, res) {
+	router.put('/tutorial/addvote/:id', eatAuth, function(req, res) {
 
 		Tutorial.findOne({'uuid': req.params.id}, function(err, data) {
 			if (err) {

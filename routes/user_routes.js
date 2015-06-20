@@ -13,7 +13,7 @@ var secret = process.env.APP_SECRET;
 var bodyParser = require('body-parser');
 var validator = require('validator');
 var User = require('../models/User.js');
-var eatAuth = require('../lib/eat_auth.js')(secret);
+var eatAuth = require('../lib/eat_auth.js')(process.env.APP_SECRET);
 
 
  module.exports = function userRoutes(router, passport) {
